@@ -14,7 +14,7 @@ def strings_have_format_map_method():
         def __missing__(self, key):
             return key
 
-    print("This prints the keys: {a} {key2}".format_map(Default(a="key1")))
+    print("This prints key1 and key2: {key1} and {key2}".format_map(Default(key1="key1")))
 
     mapping = collections.defaultdict(int, a=2)
     print("This prints the value 2000: {a}{b}{c}{d}".format_map(mapping))
