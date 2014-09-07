@@ -7,7 +7,7 @@ def functions_can_have_annotations(a: int, b: int) -> int:
     values of functions with expressions. These are optional and
     they don't influence the execution of the Python code.
 
-    You can learn more about these in PEP 3107.
+    You can learn more about this in PEP 3107.
     """
     return a + b
 
