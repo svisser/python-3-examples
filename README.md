@@ -7,3 +7,5 @@ the code comments.
 
 Contributions are welcome as long as they include some commentary and
 the Python 3.x version in which the feature was introduced.
+
+These examples have been tested with Python 3.4.
