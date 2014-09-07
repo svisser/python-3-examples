@@ -91,3 +91,24 @@ def exceptions_can_be_suppressed():
         raise ValueError
     except Exception:
         raise CustomException from None
+
+
+def suppressed_exceptions_can_still_be_read():
+    """
+    As of Python 3.3 exceptions can be suppressed but you can still
+    access the underlying exception using the '__context__' attribute.
+    """
+
+    class CustomException(Exception):
+        pass
+
+    def function():
+        try:
+            raise ValueError('error')
+        except Exception:
+            raise CustomException from None
+
+    try:
+        function()
+    except Exception as exc:
+        print(repr(exc.__context__))  # Prints ValueError('error',)
