@@ -1,4 +1,4 @@
-from functools import singledispatch
+from functools import singledispatch, total_ordering
 
 
 @singledispatch
@@ -32,3 +32,32 @@ def example_with_singledispatch():
     print(function([1, 2, 3]))
     print(function(set([1, 2, 3])))
     print(function(object()))
+
+
+def example_with_total_ordering():
+    """
+    As of Python 3.2 you can use functools.total_ordering to
+    compare instances of any class as long as you've implemented
+    the __eq__() method and one of __lt__(), __le__(), __gt__(),
+    or __ge__().
+    """
+    @total_ordering
+    class Person:
+
+        def __init__(self, age):
+            self.age = age
+
+        def __eq__(self, other):
+            return self.age == other.age
+
+        def __lt__(self, other):
+            return self.age < other.age
+
+        def __repr__(self):
+            return "Person (age: {})".format(self.age)
+
+    print(Person(age=20) < Person(age=30))
+    print(Person(age=20) > Person(age=30))
+    print(Person(age=20) <= Person(age=30))
+    print(Person(age=20) >= Person(age=30))
+    print(Person(age=20) == Person(age=30))
